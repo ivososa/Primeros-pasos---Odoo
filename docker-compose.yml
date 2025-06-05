@@ -1,0 +1,48 @@
+services:
+  odoo_db:
+    image: postgres:16.3
+    container_name: ${DB_CONTAINER_NAME}
+    restart: always
+    volumes:
+      - type: bind
+        source: ./odoo-db-data
+        target: /var/lib/postgresql/data
+    env_file:
+      - .env
+    networks:
+      - odoo_network
+    ports:
+      - "${POSTGRES_PORT}:5432"
+
+  odoo_app:
+    build: .
+    container_name: ${ODOO_CONTAINER_NAME}
+    restart: always
+    depends_on:
+      - odoo_db
+    ports:
+      - "${ODOO_PORT}:8069"
+    env_file:
+      - .env
+    volumes:
+      - type: bind
+        source: ./odoo-web-data
+        target: /var/lib/odoo
+      - type: bind
+        source: ./config
+        target: /etc/odoo
+      - type: bind
+        source: ./addons
+        target: /mnt/extra-addons
+    networks:
+      - odoo_network
+    # command: >
+    #   odoo -u ${ADDON_NAME} -d ${DB_NAME}
+
+networks:
+  odoo_network:
+    name: ${COMPOSE_PROJECT_NAME}_odoo_network
+
+volumes:
+  odoo-db-data:
+  odoo-web-data:

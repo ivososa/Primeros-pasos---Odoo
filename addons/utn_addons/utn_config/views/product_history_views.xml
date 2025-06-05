@@ -1,0 +1,85 @@
+<!-- <?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vista de árbol de historial de productos -->
+    <record id="view_product_history_tree" model="ir.ui.view">
+        <field name="name">product.history.tree</field>
+        <field name="model">product.history</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="date"/>
+                <field name="product_id"/>
+                <field name="event_type"/>
+                <field name="employee_id"/>
+                <field name="description"/>
+                <field name="responsible_id"/>
+            </tree>
+        </field>
+    </record>
+    
+    <!-- Vista de formulario de historial de productos -->
+    <record id="view_product_history_form" model="ir.ui.view">
+        <field name="name">product.history.form</field>
+        <field name="model">product.history</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="product_id"/>
+                            <field name="event_type"/>
+                            <field name="employee_id"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="responsible_id"/>
+                            <field name="description"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Notas" name="notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <!-- Vista de búsqueda de historial de productos -->
+    <record id="view_product_history_search" model="ir.ui.view">
+        <field name="name">product.history.search</field>
+        <field name="model">product.history</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="product_id"/>
+                <field name="employee_id"/>
+                <field name="event_type"/>
+                <field name="description"/>
+                <field name="responsible_id"/>
+                <filter string="Asignaciones" name="assignments" domain="[('event_type', '=', 'assignment')]"/>
+                <filter string="Devoluciones" name="returns" domain="[('event_type', '=', 'return')]"/>
+                <filter string="Reparaciones" name="repairs" domain="[('event_type', '=', 'repair')]"/>
+                <group expand="0" string="Agrupar Por">
+                    <filter string="Producto" name="group_by_product" context="{'group_by': 'product_id'}"/>
+                    <filter string="Empleado" name="group_by_employee" context="{'group_by': 'employee_id'}"/>
+                    <filter string="Tipo de Evento" name="group_by_event_type" context="{'group_by': 'event_type'}"/>
+                    <filter string="Mes" name="group_by_month" context="{'group_by': 'date:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    
+    <!-- Acción para historial de productos -->
+    <record id="action_product_history" model="ir.actions.act_window">
+        <field name="name">Historial de Productos</field>
+        <field name="res_model">product.history</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <!-- Menú para historial -->
+    <menuitem id="menu_product_history" 
+              name="Historial de Productos" 
+              parent="stock.menu_stock_inventory_control" 
+              action="action_product_history" 
+              sequence="20"/>
+</odoo> -->
