@@ -16,6 +16,10 @@ docker compose down --volumes --rmi all --remove-orphans
 ```
 
 ```
+docker compose down ---> Bajar el servidor
+```
+
+```
 docker compose up --build -d --force-recreate
 ```
 

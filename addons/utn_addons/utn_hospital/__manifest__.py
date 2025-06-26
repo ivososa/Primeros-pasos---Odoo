@@ -8,8 +8,9 @@
     'author': 'Ivo',
     'depends': ['base'],
     'data': [
-        # 'security/ir.model.access.csv',
-        # 'views/hospital_views.xml',
+        'views/menu.xml',
+        'views/patient_view.xml',
+        'security/ir.model.access.csv',
     ],
     'installable': True,
     'auto_install': False,
